@@ -2,6 +2,6 @@
 {
     "id": "blame",
     "caption": "Git Blame",
-    "command": "blame"
+    "command": "gb_blame"
 }
 ]

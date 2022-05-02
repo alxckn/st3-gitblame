@@ -116,7 +116,7 @@ class BaseBlame(metaclass=ABCMeta):
 
             buf = self._view().window().new_file()
             buf.run_command(
-                "blame_insert_commit_description",
+                "gb_blame_insert_commit_description",
                 {"desc": desc, "scratch_view_name": "commit " + sha},
             )
         elif url.path == "prev":

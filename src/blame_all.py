@@ -9,7 +9,7 @@ VIEW_SETTINGS_KEY_RULERS = "rulers"  # A stock ST setting
 VIEW_SETTINGS_KEY_RULERS_PREV = "rulers_prev"  # Made up by us
 
 
-class BlameShowAll(BaseBlame, sublime_plugin.TextCommand):
+class GbBlameShowAll(BaseBlame, sublime_plugin.TextCommand):
 
     HORIZONTAL_SCROLL_DELAY_MS = 100
 
@@ -32,7 +32,7 @@ class BlameShowAll(BaseBlame, sublime_plugin.TextCommand):
         if self.view.settings().get(VIEW_SETTINGS_KEY_PHANTOM_ALL_DISPLAYED, False):
             self.phantom_set.update(phantoms)
             self.view.settings().erase(VIEW_SETTINGS_KEY_PHANTOM_ALL_DISPLAYED)
-            self.view.run_command("blame_restore_rulers")
+            self.view.run_command("gb_blame_restore_rulers")
             # Workaround a visible empty space sometimes remaining in the viewport.
             self.horizontal_scroll_to_limit(left=False)
             self.horizontal_scroll_to_limit(left=True)
@@ -88,7 +88,7 @@ class BlameShowAll(BaseBlame, sublime_plugin.TextCommand):
         return []
 
     def close_by_user_request(self):
-        self.view.run_command("blame_erase_all")
+        self.view.run_command("gb_blame_erase_all")
 
     def rerun(self, **kwargs):
         self.run(None)
@@ -116,7 +116,7 @@ class BlameShowAll(BaseBlame, sublime_plugin.TextCommand):
         )
 
 
-class BlameEraseAll(sublime_plugin.TextCommand):
+class GbBlameEraseAll(sublime_plugin.TextCommand):
 
     # Overrides begin ------------------------------------------------------------------
 
@@ -124,12 +124,12 @@ class BlameEraseAll(sublime_plugin.TextCommand):
         sublime.status_message("The git blame result is cleared.")
         self.view.erase_phantoms(BlameShowAll.phantom_set_key())
         self.view.settings().erase(VIEW_SETTINGS_KEY_PHANTOM_ALL_DISPLAYED)
-        self.view.run_command("blame_restore_rulers")
+        self.view.run_command("gb_blame_restore_rulers")
 
     # Overrides end --------------------------------------------------------------------
 
 
-class BlameEraseAllListener(sublime_plugin.ViewEventListener):
+class GbBlameEraseAllListener(sublime_plugin.ViewEventListener):
 
     # Overrides begin ------------------------------------------------------------------
 
@@ -138,12 +138,12 @@ class BlameEraseAllListener(sublime_plugin.ViewEventListener):
         return settings.get(VIEW_SETTINGS_KEY_PHANTOM_ALL_DISPLAYED, False)
 
     def on_modified_async(self):
-        self.view.run_command("blame_erase_all")
+        self.view.run_command("gb_blame_erase_all")
 
     # Overrides end --------------------------------------------------------------------
 
 
-class BlameRestoreRulers(sublime_plugin.TextCommand):
+class GbBlameRestoreRulers(sublime_plugin.TextCommand):
 
     # Overrides begin ------------------------------------------------------------------
 

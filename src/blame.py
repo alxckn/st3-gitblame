@@ -7,7 +7,7 @@ from .base import BaseBlame
 from .templates import blame_phantom_css, blame_phantom_html_template
 
 
-class Blame(BaseBlame, sublime_plugin.TextCommand):
+class GbBlame(BaseBlame, sublime_plugin.TextCommand):
 
     # Overrides (TextCommand) ----------------------------------------------------------
 
@@ -130,7 +130,7 @@ class Blame(BaseBlame, sublime_plugin.TextCommand):
         return any(p.region == region for p in self.phantom_set.phantoms)
 
 
-class BlameInsertCommitDescription(sublime_plugin.TextCommand):
+class GbBlameInsertCommitDescription(sublime_plugin.TextCommand):
 
     # Overrides begin ------------------------------------------------------------------
 

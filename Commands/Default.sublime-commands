@@ -1,23 +1,23 @@
 [
   {
     "caption": "Git Blame: Show",
-    "command": "blame"
+    "command": "gb_blame"
   },
   {
     "caption": "Git Blame: Show All",
-    "command": "blame_show_all"
+    "command": "gb_blame_show_all"
   },
   {
     "caption": "Git Blame: Erase All",
-    "command": "blame_erase_all"
+    "command": "gb_blame_erase_all"
   },
   {
     "caption": "Git Blame: Toggle Inline Blame",
-    "command": "blame_toggle_inline"
+    "command": "gb_blame_toggle_inline"
   },
   {
     "caption": "Git Blame: Instadiff",
-    "command": "blame_instadiff"
+    "command": "gb_blame_instadiff"
   },
   {
     "caption": "Git Blame: Settings",

@@ -5,7 +5,7 @@ import sublime_plugin
 from .base import BaseBlame
 
 
-class BlameInstadiff(BaseBlame, sublime_plugin.TextCommand):
+class GbBlameInstadiff(BaseBlame, sublime_plugin.TextCommand):
 
     # Overrides (TextCommand) ----------------------------------------------------------
 

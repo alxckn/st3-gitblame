@@ -12,7 +12,7 @@ from .settings import (
 from .templates import blame_inline_phantom_css, blame_inline_phantom_html_template
 
 
-class BlameInlineListener(BaseBlame, sublime_plugin.ViewEventListener):
+class GbBlameInlineListener(BaseBlame, sublime_plugin.ViewEventListener):
 
     pkg_setting_callback_added = False
 
@@ -72,7 +72,7 @@ class BlameInlineListener(BaseBlame, sublime_plugin.ViewEventListener):
     @classmethod
     def determine_enablement(cls, view_settings):
         enabled = view_settings.get(
-            BlameToggleInline.VIEW_SETTINGS_KEY_INLINE_BLAME_ENABLED
+            GbBlameToggleInline.VIEW_SETTINGS_KEY_INLINE_BLAME_ENABLED
         )
         if enabled is None:
             enabled = pkg_settings().get(PKG_SETTINGS_KEY_INLINE_BLAME_ENABLED)
@@ -94,7 +94,7 @@ class BlameInlineListener(BaseBlame, sublime_plugin.ViewEventListener):
             if view_is_editor(view)
         ]
         for view in all_editor_views:
-            BlameToggleInline.erase_viewlevel_customization(view)
+            GbBlameToggleInline.erase_viewlevel_customization(view)
             if not pkg_settings().get(PKG_SETTINGS_KEY_INLINE_BLAME_ENABLED):
                 view.erase_phantoms(cls.phantom_set_key())
             # Do a dummy modification to the view's settings to induce the ViewEventListener applicability check to happen again.
@@ -181,7 +181,7 @@ class BlameInlineListener(BaseBlame, sublime_plugin.ViewEventListener):
             self.phantom_set.update(phantoms)
 
 
-class BlameToggleInline(sublime_plugin.TextCommand):
+class GbBlameToggleInline(sublime_plugin.TextCommand):
 
     # Might as well reuse the same settings key, but at the view-level.
     VIEW_SETTINGS_KEY_INLINE_BLAME_ENABLED = PKG_SETTINGS_KEY_INLINE_BLAME_ENABLED
